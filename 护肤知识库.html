@@ -3,94 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>护肤知识库 · 我的私人笔记</title>
+<title>护肤知识库 · 大物宇宙</title>
 <style>
-:root{--page:#f4f6f8;--card:#fff;--text:#1f2933;--muted:#6b7684;--border:#e6eaef;--accent:#3a6ea5;--accent-soft:#eaf1f9;--shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.05)}
+:root{--purple:#6b4bd6;--purple-l:#8d6ff0;--purple-d:#4c2fa8;--lav:#f2effc;--lav2:#e9e3fb;--card:#fff;--text:#2b2445;--muted:#877fa3;--border:#e6dff8;--shadow:0 4px 18px rgba(80,50,160,.10)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--page);color:var(--text);line-height:1.7;font-size:15px}
-.wrap{max-width:1400px;margin:0 auto;padding:0 20px 64px}
-header{padding:26px 20px 0}
-.hero{max-width:1400px;margin:0 auto;padding:30px 34px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
-h1{font-size:31px;font-weight:750;letter-spacing:-.6px;margin-bottom:8px}
-.sub{font-size:15px;color:var(--muted)}
-.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:24px;padding-top:22px;border-top:1px solid var(--border)}
-.stat{background:var(--page);border:1px solid #eef1f4;border-radius:12px;padding:15px 18px}
-.stat b{font-size:28px;display:block;line-height:1.1;font-weight:700;color:var(--accent)}
-.stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:6px}
-.toolbar{display:flex;gap:11px;flex-wrap:wrap;margin:22px 0 18px;align-items:center}
-input[type=text],select,textarea{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--text);outline:none;font-family:inherit}
-input[type=text]{flex:1;min-width:200px}
-input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(58,110,165,.13)}
-.count{color:var(--muted);font-size:13.5px;margin-left:auto}
-.catbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
-.catbtn{padding:9px 17px;border:1px solid var(--border);border-radius:22px;background:var(--card);cursor:pointer;font-size:14px;color:var(--muted);transition:.18s}
-.catbtn:hover{border-color:var(--accent);color:var(--accent)}
-.catbtn.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
-.catbtn .n{opacity:.8;font-size:12px;margin-left:4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:.18s;position:relative}
-.card:hover{box-shadow:0 8px 24px rgba(16,24,40,.09);border-color:#d8e2ee}
-.card.hasnote{border-left:4px solid var(--accent)}
-.brand{color:var(--accent);font-size:13px;font-weight:600;margin-bottom:4px}
-.card h3{font-size:17px;font-weight:650;line-height:1.4;margin-bottom:8px}
-.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
-.tag{background:var(--page);border:1px solid var(--border);border-radius:5px;padding:2px 9px;font-size:12px;color:var(--muted)}
-.tag.cat{background:var(--accent-soft);color:var(--accent);border-color:transparent;font-weight:600}
-.quote{font-size:13px;color:#4a5561;background:var(--page);border-left:3px solid var(--accent);padding:9px 12px;border-radius:0 6px 6px 0;margin-top:8px}
-.src{font-size:11.5px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px dashed var(--border)}
-.src a{color:var(--accent);text-decoration:none}
-.note-box{margin-top:12px;padding:12px;background:#fbfcfd;border:1px dashed var(--border);border-radius:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--lav);color:var(--text);line-height:1.7;font-size:15px;padding-bottom:70px}
+
+/* ===== 星空顶部 ===== */
+.cosmos{position:relative;overflow:hidden;padding:18px 20px 74px;background:
+ radial-gradient(ellipse 70% 60% at 80% 10%,rgba(90,60,200,.55),transparent 70%),
+ radial-gradient(ellipse 60% 50% at 10% 60%,rgba(40,120,180,.35),transparent 70%),
+ linear-gradient(160deg,#0a0a24 0%,#14143c 40%,#241a5c 100%);
+}
+.cosmos::before{content:"";position:absolute;inset:0;opacity:.85;background-image:
+ radial-gradient(1.5px 1.5px at 12% 22%,#fff,transparent),radial-gradient(1px 1px at 28% 48%,rgba(255,255,255,.8),transparent),
+ radial-gradient(2px 2px at 45% 15%,#fff,transparent),radial-gradient(1px 1px at 62% 62%,rgba(255,255,255,.7),transparent),
+ radial-gradient(1.5px 1.5px at 78% 30%,#fff,transparent),radial-gradient(1px 1px at 88% 70%,rgba(255,255,255,.6),transparent),
+ radial-gradient(1px 1px at 34% 78%,rgba(255,255,255,.7),transparent),radial-gradient(2px 2px at 70% 85%,#fff,transparent),
+ radial-gradient(1px 1px at 55% 92%,rgba(255,255,255,.5),transparent);background-size:100% 100%}
+.cosmos::after{content:"";position:absolute;width:280px;height:280px;right:-60px;top:30px;border-radius:50%;
+ background:radial-gradient(circle,rgba(140,110,255,.35),transparent 70%);filter:blur(20px)}
+.cosmos-inner{position:relative;z-index:2;max-width:1000px;margin:0 auto}
+.brandbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+.logo{display:flex;align-items:center;gap:11px;color:#fff}
+.logo .dots{display:flex;align-items:center}
+.logo .dots i{display:block;width:19px;height:19px;border-radius:50%;background:#fff}
+.logo .dots i+ i{margin-left:-6px}
+.logo .txt{display:flex;flex-direction:column;line-height:1.25}
+.logo .txt b{font-size:15px;letter-spacing:3px;font-weight:700}
+.logo .txt small{font-size:8px;letter-spacing:2px;opacity:.65}
+.capsule{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:6px 12px;display:flex;gap:14px;color:#fff;align-items:center;font-size:13px;backdrop-filter:blur(6px)}
+.capsule i{font-style:normal}
+.hero-title{color:#fff;font-size:27px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
+.hero-sub{color:rgba(255,255,255,.78);font-size:13.5px}
+
+/* 顶部大图形 banner */
+.banner{margin-top:22px;background:linear-gradient(120deg,#fffaf0 0%,#fff 55%,#f6efff 100%);border-radius:20px;padding:22px 24px;box-shadow:0 14px 36px rgba(0,0,0,.25);position:relative;overflow:hidden;display:flex;gap:20px;align-items:center;min-height:150px}
+.banner::after{content:"";position:absolute;right:-30px;top:-40px;width:180px;height:180px;border-radius:50%;border:2px solid rgba(107,75,214,.15)}
+.banner-art{flex:0 0 128px;height:128px;border-radius:16px;background:linear-gradient(150deg,#dff3ec,#f7e3ef 60%,#e8e4fb);display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:14px 10px;position:relative;overflow:hidden}
+.banner-art .bottle{width:24px;border-radius:7px 7px 3px 3px;box-shadow:0 4px 10px rgba(0,0,0,.10);position:relative}
+.banner-art .bottle::before{content:"";position:absolute;top:-7px;left:7px;width:10px;height:8px;background:inherit;border-radius:3px 3px 0 0}
+.banner-art .b1{height:78px;background:#a8d8c8}.banner-art .b2{height:96px;background:#f3b7cd}.banner-art .b3{height:66px;background:#c9c2ee}.banner-art .b4{height:86px;background:#b9d9ef}
+.banner-body{flex:1;min-width:0}
+.banner-kicker{font-size:11px;letter-spacing:2px;color:var(--purple);font-weight:700;margin-bottom:4px}
+.banner h2{font-size:23px;color:#3a2a6b;font-weight:800;margin-bottom:6px}
+.banner h2 em{font-style:normal;color:var(--purple)}
+.banner p{font-size:12.5px;color:#8a80a8;margin-bottom:12px}
+.banner-stats{display:flex;gap:18px;flex-wrap:wrap}
+.banner-stats div b{font-size:19px;color:var(--purple);font-weight:800;display:block;line-height:1.1}
+.banner-stats div span{font-size:11px;color:#9c94b5}
+
+/* ===== 主体 ===== */
+.main{position:relative;z-index:3;max-width:1000px;margin:-46px auto 0;padding:26px 22px 26px;background:linear-gradient(180deg,#f6f3ff,#fff 40%);border-radius:26px 26px 0 0;box-shadow:0 -6px 30px rgba(40,20,100,.12);min-height:60vh}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;color:#3a2a6b;margin-bottom:16px}
+.sec-title .spark{color:var(--purple-l)}
+
+/* 8宫格入口 */
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 10px;margin-bottom:26px}
+.app{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer}
+.app .ico{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,#9b7ef5,#6b4bd6);box-shadow:0 6px 14px rgba(107,75,214,.30),inset 0 1px 2px rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:23px;position:relative;transition:.18s}
+.app .ico::after{content:"";position:absolute;inset:4px;border-radius:14px;border:1px solid rgba(255,255,255,.18)}
+.app:hover .ico{transform:translateY(-3px);box-shadow:0 10px 20px rgba(107,75,214,.38)}
+.app span{font-size:12px;color:#5b5280;font-weight:600}
+.app.on .ico{background:linear-gradient(145deg,#7a58e8,#4c2fa8)}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+input[type=text],select{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--text);outline:none;font-family:inherit}
+input[type=text]{flex:1;min-width:180px}
+input:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(107,75,214,.14)}
+.count{color:var(--muted);font-size:13px;margin-left:auto}
+.btnbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.btn{padding:8px 15px;border:1px solid var(--border);border-radius:9px;background:#fff;cursor:pointer;font-size:13px;color:var(--text);font-family:inherit}
+.btn:hover{border-color:var(--purple);color:var(--purple)}
+.btn.primary{background:var(--purple);color:#fff;border-color:var(--purple)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:.18s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(80,50,160,.16)}
+.card.hasnote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--purple)}
+.brand{color:var(--purple);font-size:12.5px;font-weight:700;margin-bottom:4px}
+.card h3{font-size:16px;font-weight:700;line-height:1.4;margin-bottom:9px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.tag{background:var(--lav);border:1px solid var(--border);border-radius:6px;padding:2px 9px;font-size:11.5px;color:var(--muted)}
+.tag.cat{background:#efe9ff;color:var(--purple-d);border-color:transparent;font-weight:600}
+.sent{border-radius:6px;padding:2px 9px;font-size:11.5px;font-weight:600}
+.s-推荐{color:#2f6b58;background:#e6f2ed}.s-避雷{color:#a34f4a;background:#f8e9e7}.s-争议{color:#8a6428;background:#f9f0e1}.s-提及{color:#5b6472;background:#eef0f3}
+.quote{font-size:12.5px;color:#6b6188;background:var(--lav);border-left:3px solid var(--purple-l);padding:8px 11px;border-radius:0 6px 6px 0;margin-top:8px}
+.src{font-size:11px;color:var(--muted);margin-top:9px;padding-top:8px;border-top:1px dashed var(--border)}
+.src a{color:var(--purple);text-decoration:none}
+.jump{display:inline-block;margin-top:9px;text-decoration:none;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,#8d6ff0,#6b4bd6);padding:6px 13px;border-radius:8px}
+.jump:hover{background:var(--purple-d)}
+.note-box{margin-top:11px;padding:11px;background:#faf8ff;border:1px dashed var(--border);border-radius:9px}
 .note-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
-.note-row label{font-size:12.5px;color:var(--muted)}
+.note-row label{font-size:12px;color:var(--muted)}
 .stars{display:flex;gap:2px;cursor:pointer}
-.star{font-size:20px;color:#d8dee4;line-height:1;transition:.1s}
-.star.on{color:#e0a526}
-.note-field{width:100%;margin-top:7px;font-size:13px;padding:8px 10px;resize:vertical;min-height:34px}
-.note-actions{display:flex;gap:8px;margin-top:10px}
-.btn{padding:7px 14px;border:1px solid var(--border);border-radius:7px;background:var(--card);cursor:pointer;font-size:13px;color:var(--text);font-family:inherit}
-.btn:hover{border-color:var(--accent);color:var(--accent)}
-.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.btn.primary:hover{opacity:.9;color:#fff}
-.btn.sm{padding:5px 10px;font-size:12px}
-.topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 18px}
-.empty{text-align:center;color:var(--muted);padding:50px 20px}
-.footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:44px;padding-top:22px;border-top:1px solid var(--border)}
-.hint{font-size:12.5px;color:var(--muted);background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-bottom:16px}
-@media(max-width:640px){.grid{grid-template-columns:1fr}h1{font-size:24px}.hero{padding:22px}}
+.star{font-size:19px;color:#d8d2ea;line-height:1;transition:.1s}
+.star.on{color:#f0a93b}
+.note-field{width:100%;margin-top:6px;font-size:12.5px;padding:7px 9px;resize:vertical;min-height:32px;border:1px solid var(--border);border-radius:7px;background:#fff;font-family:inherit;color:var(--text)}
+.note-actions{display:flex;gap:8px;margin-top:9px;align-items:center}
+.btn.sm{padding:5px 11px;font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:44px 20px}
+.hint{font-size:12.5px;color:#6b5ba8;background:#efe9ff;border:1px solid #ddd2fb;border-radius:9px;padding:9px 13px;margin-bottom:16px}
+
+/* 底部 tabbar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;height:62px;background:rgba(255,255,255,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;z-index:50;backdrop-filter:blur(8px);box-shadow:0 -2px 12px rgba(80,50,160,.06)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;font-size:11px;color:#9a92b3}
+.tabbar a.on{color:var(--purple);font-weight:700}
+.tabbar .ti{font-size:19px;line-height:1}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.banner{flex-direction:column;align-items:stretch}.banner-art{flex:none;width:100%;height:110px}.apps{gap:12px 4px}.app .ico{width:50px;height:50px}.hero-title{font-size:22px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><div class="hero">
-  <h1>护肤知识库 · 我的私人笔记</h1>
-  <div class="sub">护肤品按品类细分整理 · 支持添加个人评价/评分/优缺点/场景/备注 · 数据本地保存，离线可用</div>
-  <div class="stat-row">
-    <div class="stat"><b>906</b><span>护肤条目</span></div>
-    <div class="stat"><b>10</b><span>细分品类</span></div>
-    <div class="stat"><b id="s-note">0</b><span>我的笔记</span></div>
-    <div class="stat"><b id="s-rated">0</b><span>已评分</span></div>
+<!-- 星空 header -->
+<div class="cosmos"><div class="cosmos-inner">
+  <div class="brandbar">
+    <div class="logo"><span class="dots"><i></i><i></i></span><span class="txt"><b>大物是也</b><small>DA WU SHI YE</small></span></div>
+    <div class="capsule"><i>···</i><i>◉</i></div>
   </div>
-</div></header>
+  <div class="hero-title">护肤知识库 ✦ 我的笔记</div>
+  <div class="hero-sub">医生们聊过的护肤品，一条一款，边看边记</div>
+  <div class="banner">
+    <div class="banner-art"><span class="bottle b1"></span><span class="bottle b2"></span><span class="bottle b3"></span><span class="bottle b4"></span></div>
+    <div class="banner-body">
+      <div class="banner-kicker">SKINCARE · 好物图鉴</div>
+      <h2><em>护肤宇宙</em> · 私人清单</h2>
+      <p>按品类整理，支持打分与备注，本地保存离线可看</p>
+      <div class="banner-stats">
+        <div><b>906</b><span>护肤品</span></div>
+        <div><b>10</b><span>细分品类</span></div>
+        <div><b id="s-note">0</b><span>我的笔记</span></div>
+        <div><b id="s-rated">0</b><span>已评分</span></div>
+      </div>
+    </div>
+  </div>
+</div></div>
 
-<div class="topbar">
-  <button class="btn primary" id="btn-export">导出笔记</button>
-  <button class="btn" id="btn-import">导入笔记</button>
-  <input type="file" id="file-import" accept=".json" style="display:none">
-  <button class="btn" id="btn-clear">清空笔记</button>
-  <span class="count" style="margin-left:auto">笔记自动保存在本机浏览器，换设备请用导出/导入</span>
+<!-- 主体 -->
+<div class="main">
+  <div class="sec-title"><span class="spark">✦</span> 品类导航</div>
+  <div class="apps" id="apps"></div>
+
+  <div class="sec-title"><span class="spark">✦</span> 护肤好物</div>
+  <div class="hint">点星星打分、写评价后自动存到本机；下次打开（即使断网）依然在。数据只存在你的浏览器，不会上传。</div>
+  <div class="btnbar">
+    <button class="btn primary" id="btn-export">导出笔记</button>
+    <button class="btn" id="btn-import">导入笔记</button>
+    <input type="file" id="file-import" accept=".json" style="display:none">
+    <button class="btn" id="btn-clear">清空笔记</button>
+  </div>
+  <div class="toolbar">
+    <input type="text" id="q" placeholder="搜索品牌、产品、原文…">
+    <select id="fsort"><option value="cat">按品类分组排序</option><option value="rating">按我的评分排序</option><option value="default">默认顺序</option></select>
+    <span class="count" id="cnt"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="footer" style="text-align:center;color:var(--muted);font-size:12px;margin-top:32px;padding-top:18px;border-top:1px solid var(--border)">数据来自 B 站 @大物是也、@王阿姨呀呦、@皮科医生魏小博、@逛拼多多的品检员 · 品牌名已按标准写法修正 · 仅供个人参考</div>
 </div>
 
-<div class="hint">小提示：点产品卡片里的星星打分、填写评价后会自动保存到本地；下次打开（即使断网）依然还在。数据只存在你自己的浏览器里，不会上传。</div>
-
-<div class="catbar" id="catbar"></div>
-<div class="toolbar">
-  <input type="text" id="q" placeholder="搜索品牌、产品、原文…">
-  <select id="fsort"><option value="cat">按品类分组排序</option><option value="rating">按我的评分排序</option><option value="default">默认顺序</option></select>
-  <span class="count" id="cnt"></span>
-</div>
-<div class="grid" id="grid"></div>
-
-<div class="footer">数据来源：B 站 @大物是也、@王阿姨呀呦、@皮科医生魏小博、@逛拼多多的品检员 · 由官方字幕及公开清单整理 · 个人笔记仅本地保存 · 仅供个人参考</div>
+<!-- tabbar -->
+<div class="tabbar">
+  <a href="index.html" class="on"><span class="ti">⌂</span>首页</a>
+  <a href="产品图鉴.html"><span class="ti">◈</span>好物</a>
+  <a href="index.html"><span class="ti">▦</span>榜单</a>
+  <a href="护肤知识库.html"><span class="ti">☺</span>我的</a>
 </div>
 
 <script>
@@ -98,27 +173,25 @@ const ITEMS=[{"bvid":"BV14ZChY2EMi","video_title":"【Yi马当鲜】本想挑剔
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const KEY='skincare_notes_v1';
+const APP_ICON={'洁面':'◐','卸妆':'✧','眼霜':'◉','防晒':'☼','面膜':'❋','精华':'✦','面霜':'◍','水乳':'◒','身体护理':'♡','其他护肤':'✿'};
 
-// ---- 本地笔记读写 ----
 function loadNotes(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
 function saveNotes(n){try{localStorage.setItem(KEY,JSON.stringify(n));return true}catch(e){alert('保存失败：本地存储不可用或已满');return false}}
 let notes=loadNotes();
-
 let curCat='全部';
-function renderCatbar(){
-  $('#catbar').innerHTML=['全部',...SUBCATS.map(s=>s.name)].map(c=>{
-    const n=c==='全部'?ITEMS.length:(SUBCATS.find(s=>s.name===c)?.count||0);
-    return `<div class="catbtn ${c===curCat?'active':''}" data-c="${esc(c)}">${esc(c)}<span class="n">${n}</span></div>`
-  }).join('');
-  $$('.catbtn').forEach(b=>b.addEventListener('click',()=>{curCat=b.dataset.c;renderCatbar();render()}));
-}
 
+function renderApps(){
+  const all=['全部',...SUBCATS.map(s=>s.name)];
+  $('#apps').innerHTML=all.map(c=>
+    `<div class="app ${c===curCat?'on':''}" data-c="${esc(c)}"><div class="ico">${c==='全部'?'✷':(APP_ICON[c]||'✦')}</div><span>${esc(c)}</span></div>`
+  ).join('');
+  $$('.app').forEach(b=>b.addEventListener('click',()=>{curCat=b.dataset.c;renderApps();render()}));
+}
 function starsHtml(id,val){
   let h='<div class="stars" data-id="'+id+'">';
   for(let i=1;i<=5;i++)h+=`<span class="star ${i<=val?'on':''}" data-v="${i}">★</span>`;
   return h+'</div>';
 }
-
 function render(){
   const q=$('#q').value.trim().toLowerCase(),sort=$('#fsort').value;
   let r=ITEMS.filter(x=>{
@@ -136,24 +209,26 @@ function render(){
   const show=r.slice(0,600);
   $('#grid').innerHTML=show.length?show.map(x=>{
     const nt=notes[x.id]||{};
+    const sec=toSec(x.timestamp);
+    const jump=x.bvid&&x.bvid!=='PDF-PDD'&&sec?`<a class="jump" href="https://www.bilibili.com/video/${x.bvid}?t=${sec}s" target="_blank" rel="noopener">▶ 跳到 ${esc(x.timestamp)}</a>`:'';
     return `<div class="card ${nt.rating||nt.text?'hasnote':''}" data-id="${x.id}">
       <div class="brand">${esc(x.brand)}</div>
       <h3>${esc(x.product)}</h3>
-      <div class="tags"><span class="tag cat">${esc(x.subcat)}</span><span class="tag">${esc(x.sentiment)}</span>${x.price?`<span class="tag">${esc(x.price)}</span>`:''}</div>
+      <div class="tags"><span class="tag cat">${esc(x.subcat)}</span><span class="sent s-${x.sentiment}">${esc(x.sentiment)}</span>${x.price?`<span class="tag">${esc(x.price)}</span>`:''}</div>
       ${x.quote?`<div class="quote">“${esc(x.quote)}”${x.timestamp?` <small>— ${esc(x.timestamp)}</small>`:''}</div>`:''}
       <div class="src">来源：<a href="https://www.bilibili.com/video/${x.bvid}" target="_blank" rel="noopener">${esc(x.video_title)}</a></div>
+      ${jump}
       <div class="note-box">
         <div class="note-row"><label>我的评分</label>${starsHtml(x.id,nt.rating||0)}<span style="font-size:12px;color:var(--muted)" class="rating-label">${nt.rating||'未评分'}</span></div>
         <textarea class="note-field" data-f="pros" placeholder="优点…">${esc(nt.pros||'')}</textarea>
         <textarea class="note-field" data-f="cons" placeholder="缺点…">${esc(nt.cons||'')}</textarea>
         <textarea class="note-field" data-f="scene" placeholder="使用场景…">${esc(nt.scene||'')}</textarea>
         <textarea class="note-field" data-f="text" placeholder="我的评价 / 备注…">${esc(nt.text||'')}</textarea>
-        <div class="note-actions"><button class="btn primary sm btn-save">保存</button><span class="saved-tip" style="font-size:12px;color:var(--muted);align-self:center"></span></div>
+        <div class="note-actions"><button class="btn primary sm btn-save">保存</button><span class="saved-tip" style="font-size:12px;color:var(--muted)"></span></div>
       </div>
     </div>`;
   }).join(''):'<div class="empty">没有匹配的护肤品</div>';
 
-  // 绑定星星
   $$('.stars').forEach(st=>st.addEventListener('click',e=>{
     const t=e.target;if(!t.classList.contains('star'))return;
     const id=st.dataset.id,v=+t.dataset.v;
@@ -163,7 +238,6 @@ function render(){
     st.nextElementSibling.textContent=notes[id].rating||'未评分';
     updateStat();
   }));
-  // 绑定保存
   $$('.btn-save').forEach(b=>b.addEventListener('click',()=>{
     const card=b.closest('.card'),id=card.dataset.id;
     notes[id]=notes[id]||{};
@@ -176,19 +250,18 @@ function render(){
     }
   }));
 }
+function toSec(t){const m=/^(\d{1,2}):(\d{2})/.exec(String(t||''));return m?(+m[1])*60+(+m[2]):0}
 function updateStat(){
   const vals=Object.values(notes);
   $('#s-note').textContent=vals.filter(n=>n.text||n.pros||n.cons||n.scene).length;
   $('#s-rated').textContent=vals.filter(n=>n.rating>0).length;
 }
-
 $('#q').addEventListener('input',render);
 $('#fsort').addEventListener('input',render);
 $('#btn-export').addEventListener('click',()=>{
   const blob=new Blob([JSON.stringify(notes,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='护肤笔记_'+new Date().toISOString().slice(0,10)+'.json';a.click();
-  URL.revokeObjectURL(a.href);
+  a.download='护肤笔记_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href);
 });
 $('#btn-import').addEventListener('click',()=>$('#file-import').click());
 $('#file-import').addEventListener('change',e=>{
@@ -200,7 +273,6 @@ $('#file-import').addEventListener('change',e=>{
 $('#btn-clear').addEventListener('click',()=>{
   if(confirm('确定清空所有本地笔记？此操作不可恢复，建议先导出备份。')){notes={};saveNotes(notes);render();updateStat()}
 });
-
-renderCatbar();render();updateStat();
+renderApps();render();updateStat();
 </script>
 </body></html>
