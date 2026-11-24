@@ -73,7 +73,8 @@ h1{font-size:31px;font-weight:750;letter-spacing:-.6px;margin-bottom:6px;color:v
 .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow)}
 .box h2{font-size:18px;font-weight:700;margin-bottom:5px;color:var(--accent)}
 .box .hint{font-size:12.5px;color:var(--muted);margin-bottom:14px}
-.chart-wrap{position:relative;width:100%}
+.chart-wrap{position:relative;width:100%;min-height:300px}
+.chart-wrap canvas{display:block;width:100%!important;height:100%!important}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-bottom:10px}
 .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 table{width:100%;border-collapse:collapse;font-size:14px}
@@ -128,6 +129,10 @@ input[type=text]:focus,select:focus{border-color:var(--accent2);box-shadow:0 0 0
 .modal .m-cell b{display:block;font-size:22px;color:var(--accent);font-weight:700}
 .modal .m-cell span{font-size:11.5px;color:var(--muted)}
 .modal .m-sec{font-size:13px;font-weight:700;color:var(--text);margin:16px 0 8px}
+.m-tag{display:inline-block;padding:5px 12px;margin:4px 6px 4px 0;border-radius:18px;background:var(--soft);color:var(--accent);font-size:12.5px;font-weight:600;cursor:pointer;border:1px solid var(--border)}
+.m-tag:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.m-tag.e{background:#eef4fa}
+.m-tip{font-size:11.5px;color:var(--muted);margin:2px 0 6px}
 .modal .m-bar{height:12px;border-radius:6px;overflow:hidden;display:flex;background:var(--page)}
 .modal .m-bar i{display:block;height:100%}
 .modal ul{list-style:none;font-size:13px;color:var(--muted)}
@@ -240,20 +245,29 @@ function safeChart(sel,cfg){try{if(typeof Chart==='undefined')throw new Error('n
 // TOP20：蓝色按排名渐变（第一名最深）
 const top20=RANK.slice(0,20);
 const shade=i=>{const k=i/19;return 'hsl(209,'+Math.round(52-k*22)+'%,'+Math.round(30+k*34)+'%)'};
-safeChart('#c1',{type:'bar',data:{labels:top20.map(r=>r.brand),datasets:[{label:'音浪值',data:top20.map(r=>r.total),backgroundColor:top20.map((_,i)=>shade(i)),borderRadius:3}]},
+const chart1=safeChart('#c1',{type:'bar',data:{labels:top20.map(r=>r.brand),datasets:[{label:'音浪值',data:top20.map(r=>r.total),backgroundColor:top20.map((_,i)=>shade(i)),borderRadius:3}]},
  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
   scales:{x:{beginAtZero:true,ticks:{color:'#6b7684'},grid:{color:'rgba(47,93,138,.07)'}},y:{ticks:{color:'#1f2933',font:{size:11.5}},grid:{display:false}}},
   plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:it=>{const r=top20[it.dataIndex];return '推荐'+r.推荐+' · 争议'+r.争议+' · 避雷'+r.避雷}}}}}});
 
 // 高频前12：蓝色深浅三档
 const hf=RANK.filter(r=>r.total>=5).slice(0,12);
-safeChart('#c2',{type:'bar',data:{labels:hf.map(r=>r.brand),datasets:[
+const chart2=safeChart('#c2',{type:'bar',data:{labels:hf.map(r=>r.brand),datasets:[
  {label:'推荐',data:hf.map(r=>r.推荐),backgroundColor:CL[0],borderRadius:2},
  {label:'争议',data:hf.map(r=>r.争议),backgroundColor:CL[1],borderRadius:2},
  {label:'避雷',data:hf.map(r=>r.避雷),backgroundColor:CL[2],borderRadius:2}]},
  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
   scales:{x:{stacked:true,beginAtZero:true,ticks:{color:'#6b7684'},grid:{color:'rgba(47,93,138,.07)'}},y:{stacked:true,ticks:{color:'#1f2933',font:{size:10.5}},grid:{display:false}}},
   plugins:{legend:{display:false}}}});
+// 容器高度按屏幕调整 + 重绘，解决移动端图表空白
+function fitCharts(){
+ const mob=window.innerWidth<640;
+ const w1=$('#c1'),w2=$('#c2');
+ if(w1&&w1.parentNode)w1.parentNode.style.height=(mob?'560px':'820px');
+ if(w2&&w2.parentNode)w2.parentNode.style.height=(mob?'420px':'560px');
+ try{chart1&&chart1.resize();chart2&&chart2.resize()}catch(e){}
+}
+window.addEventListener('resize',fitCharts);fitCharts();
 
 // 收藏
 const FKEY='kb_fav_brands';let favs={};try{favs=JSON.parse(localStorage.getItem(FKEY)||'{}')}catch(e){}
@@ -272,10 +286,23 @@ function showBrand(name){
   '<div class="m-cell"><b>'+r.recommend_ratio+'%</b><span>好评率</span></div><div class="m-cell"><b>'+r.video_count+'</b><span>出现视频</span></div></div>'+
   '<div class="m-bar"><i style="width:'+(r['推荐']/r.total*100)+'%;background:'+CL[0]+'"></i><i style="width:'+(r['争议']/r.total*100)+'%;background:'+CL[1]+'"></i><i style="width:'+(r['避雷']/r.total*100)+'%;background:'+CL[2]+'"></i><i style="width:'+(r['提及']/r.total*100)+'%;background:'+CL[3]+'"></i></div>'+
   '<div class="m-sec">态度分布：推荐 '+r['推荐']+' · 争议 '+r['争议']+' · 避雷 '+r['避雷']+' · 提及 '+r['提及']+'</div>'+
-  '<div class="m-sec">主类别：'+esc(r.main_category)+' ｜ 代表产品：'+esc(r.products.join('、'))+'</div>'+
+  '<div class="m-sec">① 品牌分类（点击跳转筛选）</div><div class="m-tip">该品牌出现在哪些大类</div>'+
+  r.categories.map(c=>'<span class="m-tag" onclick="jumpToFilter(\'cat\',this.dataset.v)" data-v="'+esc(c)+'">'+esc(c)+'</span>').join('')+
+  '<div class="m-sec">② 护肤品类（点击跳转筛选）</div><div class="m-tip">该品牌护肤品细分到哪些品类</div>'+
+  [...new Set(rel.map(x=>x.subcat).filter(Boolean))].map(c=>'<span class="m-tag e" onclick="jumpToFilter(\'sub\',this.dataset.v)" data-v="'+esc(c)+'">'+esc(c)+'</span>').join('')+
+  '<div class="m-sec">代表产品：'+esc(r.products.join('、'))+'</div>'+
   '<div class="m-sec">来源视频</div><ul>'+vids.slice(0,8).map(([b,t])=>'<li><a href="https://www.bilibili.com/video/'+b+'" target="_blank" rel="noopener">'+esc(t)+'</a></li>').join('')+'</ul>'+
   (rel[0]&&rel[0].quote?'<div class="m-sec">代表原文</div><div class="quote">“'+esc(rel[0].quote)+'”</div>':'');
  $('#mask').classList.add('show');
+}
+// 从品牌详情跳到对应分类：关闭弹窗→切推荐系列→按分类筛选
+function jumpToFilter(kind,val){
+ $('#mask').classList.remove('show');
+ switchTab('推荐');
+ if(kind==='sub'){curSub=val;renderSubchips()}
+ else{curSub=val;$('#sq').value=''}
+ renderSeries();
+ $('#sec-series').scrollIntoView({behavior:'smooth'});
 }
 $('#mask').addEventListener('click',e=>{if(e.target===$('#mask'))$('#mask').classList.remove('show')});
 
