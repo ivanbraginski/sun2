@@ -7,7 +7,7 @@
 <style>
 :root{--purple:#6b4bd6;--purple-l:#8d6ff0;--purple-d:#4c2fa8;--lav:#f2effc;--lav2:#e9e3fb;--card:#fff;--text:#2b2445;--muted:#877fa3;--border:#e6dff8;--shadow:0 4px 18px rgba(80,50,160,.10)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--lav);color:var(--text);line-height:1.7;font-size:15px;padding-bottom:70px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--lav);color:var(--text);line-height:1.7;font-size:15px;padding-bottom:0}
 
 /* ===== 星空顶部 ===== */
 .cosmos{position:relative;overflow:hidden;padding:18px 20px 74px;background:
@@ -105,11 +105,6 @@ input:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(10
 .empty{text-align:center;color:var(--muted);padding:44px 20px}
 .hint{font-size:12.5px;color:#6b5ba8;background:#efe9ff;border:1px solid #ddd2fb;border-radius:9px;padding:9px 13px;margin-bottom:16px}
 
-/* 底部 tabbar */
-.tabbar{position:fixed;left:0;right:0;bottom:0;height:62px;background:rgba(255,255,255,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;z-index:50;backdrop-filter:blur(8px);box-shadow:0 -2px 12px rgba(80,50,160,.06)}
-.tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;font-size:11px;color:#9a92b3}
-.tabbar a.on{color:var(--purple);font-weight:700}
-.tabbar .ti{font-size:19px;line-height:1}
 @media(max-width:640px){.grid{grid-template-columns:1fr}.banner{flex-direction:column;align-items:stretch}.banner-art{flex:none;width:100%;height:110px}.apps{gap:12px 4px}.app .ico{width:50px;height:50px}.hero-title{font-size:22px}}
 </style>
 </head>
@@ -158,14 +153,6 @@ input:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(10
   </div>
   <div class="grid" id="grid"></div>
   <div class="footer" style="text-align:center;color:var(--muted);font-size:12px;margin-top:32px;padding-top:18px;border-top:1px solid var(--border)">数据来自 B 站 @大物是也、@王阿姨呀呦、@皮科医生魏小博 · 品牌名已按标准写法修正 · 仅供个人参考</div>
-</div>
-
-<!-- tabbar -->
-<div class="tabbar">
-  <a href="index.html" class="on"><span class="ti">⌂</span>首页</a>
-  <a href="gallery.html"><span class="ti">◈</span>好物</a>
-  <a href="index.html"><span class="ti">▦</span>榜单</a>
-  <a href="skincare.html"><span class="ti">☺</span>我的</a>
 </div>
 
 <script>
